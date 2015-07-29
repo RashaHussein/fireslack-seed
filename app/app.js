@@ -14,7 +14,11 @@ angular
     'angular-md5',
     'ui.router'
   ])
-  .config(function ($stateProvider, $urlRouterProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+    $locationProvider.html5Mode({
+      enabled: true,
+      requireBase: false
+    });
     $stateProvider
       .state('home', {
         url: '/',
@@ -26,10 +30,10 @@ angular
         templateUrl: 'auth/login.html',
         resolve: {
           requireNoAuth: function($state, Auth) {
-            return Auth.$requireAuth().then(function(auth){
-              console.log("already logged in");
+            return Auth.$requireAuth().then(function(auth) {
+              console.log("already logged in", auth);
               $state.go('home');
-            }, function(error){
+            }, function(error) {
               return;
             });
           }
@@ -41,11 +45,28 @@ angular
         templateUrl: 'auth/register.html',
         resolve: {
           requireNoAuth: function($state, Auth) {
-            return Auth.$requireAuth().then(function(auth){
+            return Auth.$requireAuth().then(function(auth) {
               console.log("already logged in");
               $state.go('home');
-            }, function(error){
+            }, function(error) {
               return;
+            });
+          }
+        }
+      })
+      .state('profile', {
+        url: '/profile',
+        controller: 'ProfileCtrl as profileCtrl',
+        templateUrl: 'users/profile.html',
+        resolve: {
+          auth: function($state, Users, Auth) {
+            return Auth.$requireAuth().catch(function(){
+              $state.go('home');
+            });
+          },
+          profile: function(Users, Auth) {
+            return Auth.$requireAuth().then(function(auth){
+              return Users.getProfile(auth.uid).$loaded();
             });
           }
         }

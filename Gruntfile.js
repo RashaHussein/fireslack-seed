@@ -68,8 +68,17 @@ module.exports = function (grunt) {
       options: {
         port: 4000,
         // Change this to '0.0.0.0' to access the server from outside.
-        hostname: '0.0.0.0',
-        livereload: 4002
+        hostname: 'localhost',
+        livereload: 4002,
+        middleware: function(connect, options) {
+          var middlewares;
+          middlewares = [];
+          middlewares.push(modRewrite(['^[^\\.]*$ /index.html [L]']));
+          options.base.forEach(function(base) {
+            return middlewares.push(connect['static'](base));
+          });
+          return middlewares;
+        }
       },
       livereload: {
         options: {
