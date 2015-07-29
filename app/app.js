@@ -22,13 +22,35 @@ angular
       })
       .state('login', {
         url: '/login',
-        templateUrl: 'auth/login.html'
+        controller: 'AuthCtrl as authCtrl',
+        templateUrl: 'auth/login.html',
+        resolve: {
+          requireNoAuth: function($state, Auth) {
+            return Auth.$requireAuth().then(function(auth){
+              console.log("already logged in");
+              $state.go('home');
+            }, function(error){
+              return;
+            });
+          }
+        }
       })
       .state('register', {
         url: '/register',
-        templateUrl: 'auth/register.html'
+        controller: 'AuthCtrl as authCtrl',
+        templateUrl: 'auth/register.html',
+        resolve: {
+          requireNoAuth: function($state, Auth) {
+            return Auth.$requireAuth().then(function(auth){
+              console.log("already logged in");
+              $state.go('home');
+            }, function(error){
+              return;
+            });
+          }
+        }
       });
 
     $urlRouterProvider.otherwise('/');
   })
-  .constant('FirebaseUrl', 'https://slack.firebaseio.com/');
+  .constant('FirebaseUrl', 'https://fireslack-test.firebaseio.com/');
