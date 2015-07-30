@@ -1,5 +1,6 @@
 body {
   padding: 0;
+  font-family: Lato, appleLogo, sans-serif;
 }
 
 .page-wrapper {
@@ -31,6 +32,7 @@ body {
   position:relative;
   overflow-y:scroll;
   padding-bottom:100px;
+  color: #ab9ba9;
 }
 
 .sidebar .slack-name {
@@ -46,18 +48,19 @@ body {
   margin-bottom:0px;
 }
 
-.sidebar .room-list {
+.sidebar .channel-list {
   margin-top:20px;
   background:#4d394b;
   position:relative;
 }
 
-.sidebar .room-list .room a{
+.sidebar .channel-list .channel a {
   display:block;
   color:rgba(255,255,255,0.6);
   padding:3px 0px 3px 15px;
   width:90%;
   font-weight:300;
+  text-decoration: none;
 
   -webkit-border-top-right-radius: 4px;
   -webkit-border-bottom-right-radius: 4px;
@@ -67,22 +70,22 @@ body {
   border-bottom-right-radius: 4px;
 }
 
-.sidebar .room-list .room a:hover{
+.sidebar .channel-list .channel a:hover{
   text-decoration: none;
   background:#3E313C;
 }
 
-.sidebar .room-list .room a.selected{
+.sidebar .channel-list .channel a.selected{
   background:#4c9689;
   color:#fff;
   text-decoration: none !important;
 }
 
-.sidebar .room-list .room.create {
+.sidebar .channel-list .channel.create {
   font-style: italic;
 }
 
-.sidebar .room-list .list-head {
+.sidebar .channel-list .list-head {
   margin-top:10px;
   color: #fff;
   font-weight: bold;
@@ -197,9 +200,13 @@ body {
   padding-left:5px;
 }
 
+.message-pane .message-wrap .message-info .message {
+  font-weight: 100;
+}
+
 .message-pane .message-wrap .message-info .user-name {
-  color:#555459;
   font-weight:900;
+  color: #555459;
 }
 
 .message-pane .message-wrap .message-info .user-name span{
