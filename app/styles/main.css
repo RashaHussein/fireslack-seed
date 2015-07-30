@@ -96,6 +96,7 @@ body {
   padding:15px;
   background:#3E313C;
   width:19.5%;
+  box-sizing: border-box;
 }
 
 .sidebar .my-info .user-pic {
@@ -143,10 +144,11 @@ body {
 }
 
 .message-pane {
-  display:inline-block;
+  display: inline-block;
   vertical-align: top;
   height:100%;
   width:80%;
+  box-sizing: border-box;
   overflow-y:scroll;
   padding:55px 15px 65px 15px;
 }
