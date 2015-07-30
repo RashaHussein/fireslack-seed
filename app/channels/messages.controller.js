@@ -4,7 +4,6 @@ angular.module('angularfireSlackApp')
 
 		messagesCtrl.channelName = channelName;
 		messagesCtrl.messages = messages;
-		console.log(messagesCtrl.messages);
 
 		messagesCtrl.message = '';
 
